@@ -9,13 +9,7 @@ and unzip the zip file. DO NOT change the folder structure and files' location
 
 ### Run the script
 
-#### Method 1:
-* 1. in R Studio, type source("https://github.com/fwtang/Module3_Assignment/blob/master/run_analysis.R")
-* 2. then type run_analysis() 
-* 3. The output file "avgdata_ActSubj.txt" will be available in "UCI HAR Dataset" folder
-
-#### Method 2:
-* 1. Download the run_analysis.R to the working folder
+* 1. Download the run_analysis.R to the working directory
 * 2. in R Studio, type source("run_analysis.R")
 * 3. then type run_analysis() 
 * 4. The output file "avgdata_ActSubj.txt" will be available in "UCI HAR Dataset" folder
