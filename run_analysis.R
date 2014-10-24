@@ -74,9 +74,8 @@ run_analysis<-function(){
         ## and each subject
         tidy<-aggregate(extract_data, 
                         by = list(extract_data$Activity, extract_data$Subject), 
-                        FUN="mean", na.action=na.omit) 
-        %>% tbl_df()
-        %>% subset(select=-c(Activity, Subject))
+                        FUN="mean", na.action=na.omit) %>% tbl_df() %>% 
+                subset(select=-c(Activity, Subject))
         
         ## Update the columns names 
         cnames<-colnames(tidy)
