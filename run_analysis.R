@@ -17,20 +17,20 @@ run_analysis<-function(){
         x_test<-read.table(paste(dir, "test/X_test.txt", sep="/"))
         y_test<-read.table(paste(dir, "test/y_test.txt", sep="/"))
         sub_test<-read.table(paste(dir, "test/subject_test.txt", sep="/"))
-        test_data<-cbind(x_test, y_test, sub_test)
+        test_data<-cbind(x_test, sub_test, y_test)
         
         ## merge X_train and y_train, same as x_test and y_test
         x_train<-read.table(paste(dir, "train/X_train.txt", sep="/"))
         y_train<-read.table(paste(dir, "train/y_train.txt", sep="/"))
         sub_train<-read.table(paste(dir, "train/subject_train.txt", sep="/"))
-        train_data<-cbind(x_train, y_train, sub_train)
+        train_data<-cbind(x_train, sub_train, y_train)
         
         ## merge training and test data set
         test_train<-rbind(test_data, train_data)
         
         ## load the features.txt to var_name to replace all the columns'names
         var_name<-read.table(paste(dir, "features.txt", sep="/"))
-        cnames<-as.character(var_name[,2]) %>% c("Activity", "Subject")
+        cnames<-as.character(var_name[,2]) %>% c("Subject", "Activity")
         colnames(test_train)<-cnames
         
         ## extract the mean and std deviation measurement data 
@@ -55,7 +55,7 @@ run_analysis<-function(){
         ## fBodyGyroMag:529, 530
         ## fBodyGyroJerkMag: 542, 543
         
-        ## 562 is the activity column, 563 is the subject column
+        ## 562 is the subject column, 563 is the activity column, 
         
         extract_data<-test_train[, c(1, 2, 3, 4, 5, 6, 41, 42, 43, 44, 45, 46, 81, 82, 83, 
                          84, 85, 86, 121, 122, 123, 124, 125, 126, 161, 162, 
@@ -79,17 +79,18 @@ run_analysis<-function(){
         
         ## Update the columns names 
         cnames<-colnames(tidy)
-        cnames<-paste("AVG", cnames, sep="-")
+        cnames<-paste("AVG", cnames, sep=".")
         colnames(tidy)<-cnames
         colnames(tidy)[1] <- "Activity"
         colnames(tidy)[2] <- "Subject"
+        tidy<-subset(tidy, select = c(2, 1, 3:68))
         
         ## write to a file in the working director
         write.table(tidy, file="avgdata_ActSubj.txt", row.names = FALSE)
         
         ## clean the environmemt. 
         ## Comment this line if you want to see the working data in memory
-        rm(list = ls())
+        ## rm(list = ls())
 }
 
 
