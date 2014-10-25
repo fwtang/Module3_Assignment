@@ -15,4 +15,4 @@ and unzip the zip file. DO NOT change the folder structure and files' location
 * 4. The output file "avgdata_ActSubj.txt" will be available in "UCI HAR Dataset" folder
 
 ### Understand the output data set
-Refer to code book describing the variables in the data set
+Refer to Data Dictionary (code book) describing the variables in the data set at https://github.com/fwtang/Module3_Assignment/blob/master/Data%20Dictionary.md
